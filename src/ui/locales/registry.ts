@@ -26,7 +26,7 @@ export const LOCALES: LocaleEntry[] = [
   },
   {
     code: "zh-CN",
-    nativeName: "中文（简体）",
+    nativeName: "中文(简体)",
     englishName: "Chinese (Simplified)",
     flag: "🇨🇳",
   },

@@ -18,6 +18,8 @@ export const zhCN: Record<string, string> = {
   "Projects": "项目",
   "Goals": "目标",
   "Activity": "动态",
+  "Org": "组织",
+  "Skills": "技能",
   "Costs": "费用",
   "Approvals": "审批",
   "Design Guide": "设计指南",

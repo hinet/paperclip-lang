@@ -51,7 +51,7 @@ export function LangSwitcher() {
     >
       {LOCALES.map((locale) => (
         <option key={locale.code} value={locale.code}>
-          {locale.flag} {locale.nativeName}
+          {locale.nativeName}
         </option>
       ))}
     </select>

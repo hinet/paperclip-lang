@@ -34,23 +34,18 @@ export function startTranslation(
     for (const mutation of mutations) {
       if (mutation.type === "childList") {
         Array.from(mutation.addedNodes).forEach((node) => translateNode(node, dict));
-      } else if (mutation.type === "characterData" && mutation.target.textContent) {
-        // A text node's content changed directly — check if it needs translation
-        const text = mutation.target.textContent.trim();
-        if (text && dict[text] !== undefined) {
-          mutation.target.textContent = mutation.target.textContent.replace(
-            text,
-            dict[text]
-          );
-        }
       }
+      // Note: characterData observation is intentionally omitted. React updates
+      // text by replacing nodes (childList), not via direct characterData writes.
+      // Watching characterData causes an infinite loop: our replacement fires a
+      // new characterData mutation, React reconciles back to English, we fire
+      // again — freezing the page on any live-updating view (e.g. Routines).
     }
   });
 
   observer.observe(document.body, {
     childList: true,
     subtree: true,
-    characterData: true,
   });
 
   return () => observer.disconnect();
