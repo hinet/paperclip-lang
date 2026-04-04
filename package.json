@@ -1,0 +1,49 @@
+{
+  "name": "paperclip-lang",
+  "version": "1.0.2",
+  "description": "Multi-language UI support for Paperclip",
+  "type": "module",
+  "author": {
+    "name": "hinet",
+    "email": "63603636@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hinet/paperclip-lang"
+  },
+  "homepage": "https://github.com/hinet/paperclip-lang#readme",
+  "bugs": {
+    "url": "https://github.com/hinet/paperclip-lang/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "paperclipPlugin": {
+    "manifest": "./dist/manifest.js",
+    "worker": "./dist/worker.js",
+    "ui": "./dist/ui/"
+  },
+  "scripts": {
+    "prebuild": "node ../../../scripts/ensure-plugin-build-deps.mjs",
+    "build": "tsc && node ./scripts/build-worker.mjs && node ./scripts/build-ui.mjs",
+    "clean": "rm -rf dist",
+    "typecheck": "pnpm --filter @paperclipai/plugin-sdk build && tsc --noEmit"
+  },
+  "devDependencies": {
+    "@paperclipai/plugin-sdk": "workspace:*",
+    "@types/node": "^24.6.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "esbuild": "^0.27.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  }
+}
