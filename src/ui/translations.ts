@@ -1,4 +1,8 @@
 import { zhCN } from "./locales/zh-CN.js";
+import { ja } from "./locales/ja.js";
+import { ko } from "./locales/ko.js";
+import { de } from "./locales/de.js";
+import { fr } from "./locales/fr.js";
 
 /**
  * Maps locale codes to their translation dictionaries.
@@ -9,6 +13,8 @@ import { zhCN } from "./locales/zh-CN.js";
  */
 export const LOCALE_DICTS: Record<string, Record<string, string>> = {
   "zh-CN": zhCN,
-  // "ja": jaJP,
-  // "ko": koKR,
+  "ja": ja,
+  "ko": ko,
+  "de": de,
+  "fr": fr,
 };
