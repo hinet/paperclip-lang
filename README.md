@@ -6,6 +6,10 @@
 
 - 🇺🇸 English（默认）
 - 🇨🇳 中文（简体）
+- 🇯🇵 日本語
+- 🇰🇷 한국어
+- 🇩🇪 Deutsch
+- 🇫🇷 Français
 
 ---
 
@@ -89,20 +93,21 @@ pnpm --filter paperclip-lang build
 export const LOCALES: LocaleEntry[] = [
   { code: "en",    nativeName: "English",     englishName: "English",              flag: "🇺🇸" },
   { code: "zh-CN", nativeName: "中文（简体）", englishName: "Chinese (Simplified)", flag: "🇨🇳" },
+  // ... 已有语言省略 ...
   // 新增：
-  { code: "ja",    nativeName: "日本語",       englishName: "Japanese",             flag: "🇯🇵" },
+  { code: "es",    nativeName: "Español",     englishName: "Spanish",              flag: "🇪🇸" },
 ];
 ```
 
 ### 步骤 2：创建翻译词典文件
 
-新建 `src/ui/locales/ja.ts`：
+新建 `src/ui/locales/es.ts`：
 
 ```typescript
-export const jaJP: Record<string, string> = {
-  "Home": "ホーム",
-  "Issues": "課題",
-  "Create": "作成",
+export const es: Record<string, string> = {
+  "Home": "Inicio",
+  "Issues": "Incidencias",
+  "Create": "Crear",
   // ... 更多翻译
 };
 ```
@@ -113,11 +118,11 @@ export const jaJP: Record<string, string> = {
 
 ```typescript
 import { zhCN } from "./locales/zh-CN.js";
-import { jaJP } from "./locales/ja.js";  // 新增
+import { es } from "./locales/es.js";  // 新增
 
 export const LOCALE_DICTS: Record<string, Record<string, string>> = {
   "zh-CN": zhCN,
-  "ja":    jaJP,  // 新增
+  "es":    es,  // 新增
 };
 ```
 
@@ -205,7 +210,11 @@ paperclip-lang/
         ├── translations.ts      # 语言代码 → 词典映射
         └── locales/
             ├── registry.ts  # 语言注册表
-            └── zh-CN.ts     # 简体中文翻译词典
+            ├── zh-CN.ts     # 简体中文翻译词典
+            ├── ja.ts        # 日本語翻译词典
+            ├── ko.ts        # 한국어翻译词典
+            ├── de.ts        # Deutsch翻译词典
+            └── fr.ts        # Français翻译词典
 ```
 
 ---
