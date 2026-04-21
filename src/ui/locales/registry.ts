@@ -30,11 +30,30 @@ export const LOCALES: LocaleEntry[] = [
     englishName: "Chinese (Simplified)",
     flag: "🇨🇳",
   },
-  // Future languages — uncomment and add a matching locale file:
-  // { code: "ja", nativeName: "日本語", englishName: "Japanese", flag: "🇯🇵" },
-  // { code: "ko", nativeName: "한국어", englishName: "Korean", flag: "🇰🇷" },
-  // { code: "de", nativeName: "Deutsch", englishName: "German", flag: "🇩🇪" },
-  // { code: "fr", nativeName: "Français", englishName: "French", flag: "🇫🇷" },
+  {
+    code: "ja",
+    nativeName: "日本語",
+    englishName: "Japanese",
+    flag: "🇯🇵",
+  },
+  {
+    code: "ko",
+    nativeName: "한국어",
+    englishName: "Korean",
+    flag: "🇰🇷",
+  },
+  {
+    code: "de",
+    nativeName: "Deutsch",
+    englishName: "German",
+    flag: "🇩🇪",
+  },
+  {
+    code: "fr",
+    nativeName: "Français",
+    englishName: "French",
+    flag: "🇫🇷",
+  },
 ];
 
 export const DEFAULT_LOCALE = "en";
