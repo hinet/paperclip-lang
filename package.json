@@ -1,6 +1,6 @@
 {
   "name": "paperclip-lang",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Multi-language UI support for Paperclip",
   "type": "module",
   "author": {
@@ -28,13 +28,12 @@
     "ui": "./dist/ui/"
   },
   "scripts": {
-    "prebuild": "node ../../../scripts/ensure-plugin-build-deps.mjs",
     "build": "tsc && node ./scripts/build-worker.mjs && node ./scripts/build-ui.mjs",
     "clean": "rm -rf dist",
     "typecheck": "pnpm --filter @paperclipai/plugin-sdk build && tsc --noEmit"
   },
   "devDependencies": {
-    "@paperclipai/plugin-sdk": "workspace:*",
+    "@paperclipai/plugin-sdk": "^2026.416.0",
     "@types/node": "^24.6.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
