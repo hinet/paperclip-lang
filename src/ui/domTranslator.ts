@@ -18,12 +18,70 @@ const TRANSLATED_ATTRS = [
   "aria-description",
 ] as const;
 
-function translateNode(node: Node, dict: Record<string, string>): void {
+/**
+ * Keys prefixed with "~" are number patterns for dynamically composed text
+ * (e.g. "~{n} run costs unavailable"), where "{n}" matches a number run.
+ * They let template-literal strings like "162 run costs unavailable" — a
+ * single text node that no exact key can match — still get translated.
+ */
+const PATTERN_PREFIX = "~";
+const PATTERN_NUMBER = "{n}";
+const NUMBER_SOURCE = "\\d[\\d.,]*";
+
+interface CompiledPattern {
+  re: RegExp;
+  template: string;
+}
+
+function compilePatterns(dict: Record<string, string>): CompiledPattern[] {
+  const patterns: CompiledPattern[] = [];
+  for (const key of Object.keys(dict)) {
+    if (!key.startsWith(PATTERN_PREFIX)) continue;
+    const escaped = key
+      .slice(PATTERN_PREFIX.length)
+      .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+      .split("\\{n\\}")
+      .join(NUMBER_SOURCE);
+    try {
+      patterns.push({ re: new RegExp(`^${escaped}$`), template: dict[key] });
+    } catch {
+      // Invalid pattern — skip it rather than break the whole engine.
+    }
+  }
+  return patterns;
+}
+
+function lookupTranslation(
+  text: string,
+  dict: Record<string, string>,
+  patterns: CompiledPattern[]
+): string | undefined {
+  const exact = dict[text];
+  if (exact !== undefined) return exact;
+  // Patterns are only tried on short strings containing a number, so the
+  // common exact-match path stays cheap.
+  if (patterns.length > 0 && text.length <= 80 && /\d/.test(text)) {
+    for (const { re, template } of patterns) {
+      const match = text.match(re);
+      if (match) return template.replace(/\{n\}/g, match[1] ?? match[0]);
+    }
+  }
+  return undefined;
+}
+
+function translateNode(
+  node: Node,
+  dict: Record<string, string>,
+  patterns: CompiledPattern[]
+): void {
   if (node.nodeType === Node.TEXT_NODE) {
     const original = node.textContent?.trim();
-    if (original && dict[original] !== undefined && node.textContent) {
-      // Preserve surrounding whitespace while replacing the trimmed content
-      node.textContent = node.textContent.replace(original, dict[original]);
+    if (original && node.textContent) {
+      const translated = lookupTranslation(original, dict, patterns);
+      if (translated !== undefined && translated !== original) {
+        // Preserve surrounding whitespace while replacing the trimmed content
+        node.textContent = node.textContent.replace(original, translated);
+      }
     }
     return;
   }
@@ -33,13 +91,13 @@ function translateNode(node: Node, dict: Record<string, string>): void {
       const value = el.getAttribute(attr);
       if (!value) continue;
       const trimmed = value.trim();
-      const translated = dict[trimmed];
+      const translated = lookupTranslation(trimmed, dict, patterns);
       // Idempotent: once translated, the lookup misses and nothing is written
       if (translated === undefined || translated === trimmed) continue;
       el.setAttribute(attr, value.replace(trimmed, translated));
     }
   }
-  Array.from(node.childNodes).forEach((child) => translateNode(child, dict));
+  Array.from(node.childNodes).forEach((child) => translateNode(child, dict, patterns));
 }
 
 /**
@@ -51,15 +109,17 @@ function translateNode(node: Node, dict: Record<string, string>): void {
 export function startTranslation(
   dict: Record<string, string>
 ): () => void {
+  const patterns = compilePatterns(dict);
+
   // Translate existing DOM
-  translateNode(document.body, dict);
+  translateNode(document.body, dict, patterns);
 
   const observer = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
       if (mutation.type === "childList") {
-        Array.from(mutation.addedNodes).forEach((node) => translateNode(node, dict));
+        Array.from(mutation.addedNodes).forEach((node) => translateNode(node, dict, patterns));
       } else if (mutation.type === "attributes") {
-        translateNode(mutation.target, dict);
+        translateNode(mutation.target, dict, patterns);
       }
       // Note: characterData observation is intentionally omitted. React updates
       // text by replacing nodes (childList), not via direct characterData writes.

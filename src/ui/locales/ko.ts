@@ -1338,4 +1338,12 @@ export const ko: Record<string, string> = {
   // ── v1.1.0 additions (2026-11-17 UI sweep; 2 entries) ────────
   "Decisions": "결정",
   "Fast responses": "빠른 응답",
+
+  // ── v1.1.0 additions (2026-11-17 UI sweep; 6 entries) ────────
+  "~{n} run cost unavailable": "실행 비용을 확인할 수 없음: {n}건",
+  "~{n} run costs unavailable": "실행 비용을 확인할 수 없음: {n}건",
+  "~{n} billing type unknown": "알 수 없는 청구 카테고리: {n}개",
+  "~{n} billing types unknown": "알 수 없는 청구 카테고리: {n}개",
+  "~{n} total events in range": "기간 내 총 {n}개 이벤트",
+  "~${n} estimated in range": "기간 내 예상 금액: ${n}",
 };

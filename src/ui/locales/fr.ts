@@ -1338,4 +1338,12 @@ export const fr: Record<string, string> = {
   // ── v1.1.0 additions (2026-11-17 UI sweep; 2 entries) ────────
   "Decisions": "Décisions",
   "Fast responses": "Réponses rapides",
+
+  // ── v1.1.0 additions (2026-11-17 UI sweep; 6 entries) ────────
+  "~{n} run cost unavailable": "{n} coût d’exécution indisponible",
+  "~{n} run costs unavailable": "{n} coûts d’exécution indisponibles",
+  "~{n} billing type unknown": "{n} catégorie de facturation inconnue",
+  "~{n} billing types unknown": "{n} catégories de facturation inconnues",
+  "~{n} total events in range": "{n} événements au total sur la période",
+  "~${n} estimated in range": "${n} estimés sur la période",
 };

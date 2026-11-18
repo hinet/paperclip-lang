@@ -1342,4 +1342,12 @@ export const zhCN: Record<string, string> = {
   // ── v1.1.0 additions (2026-11-17 UI sweep; 2 entries) ────────
   "Decisions": "决策",
   "Fast responses": "快速响应",
+
+  // ── v1.1.0 additions (2026-11-17 UI sweep; 6 entries) ────────
+  "~{n} run cost unavailable": "{n} 条运行成本不可用",
+  "~{n} run costs unavailable": "{n} 条运行成本不可用",
+  "~{n} billing type unknown": "{n} 个未知计费类别",
+  "~{n} billing types unknown": "{n} 个未知计费类别",
+  "~{n} total events in range": "范围内共 {n} 个事件",
+  "~${n} estimated in range": "区间内估算 ${n}",
 };

@@ -1338,4 +1338,12 @@ export const ja: Record<string, string> = {
   // ── v1.1.0 additions (2026-11-17 UI sweep; 2 entries) ────────
   "Decisions": "判断",
   "Fast responses": "高速応答",
+
+  // ── v1.1.0 additions (2026-11-17 UI sweep; 6 entries) ────────
+  "~{n} run cost unavailable": "実行コストを取得できない件: {n}",
+  "~{n} run costs unavailable": "実行コストを取得できない件: {n}",
+  "~{n} billing type unknown": "不明な請求カテゴリ: {n} 件",
+  "~{n} billing types unknown": "不明な請求カテゴリ: {n} 件",
+  "~{n} total events in range": "期間内のイベント合計: {n} 件",
+  "~${n} estimated in range": "期間内の見積もり: ${n}",
 };
