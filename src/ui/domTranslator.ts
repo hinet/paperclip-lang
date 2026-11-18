@@ -41,7 +41,7 @@ function compilePatterns(dict: Record<string, string>): CompiledPattern[] {
       .slice(PATTERN_PREFIX.length)
       .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
       .split("\\{n\\}")
-      .join(NUMBER_SOURCE);
+      .join("(" + NUMBER_SOURCE + ")");
     try {
       patterns.push({ re: new RegExp(`^${escaped}$`), template: dict[key] });
     } catch {
@@ -63,7 +63,11 @@ function lookupTranslation(
   if (patterns.length > 0 && text.length <= 80 && /\d/.test(text)) {
     for (const { re, template } of patterns) {
       const match = text.match(re);
-      if (match) return template.replace(/\{n\}/g, match[1] ?? match[0]);
+      if (match) {
+        // Each {n} in the template consumes the next captured number group
+        let g = 1;
+        return template.replace(/\{n\}/g, () => match[g++] ?? match[0]);
+      }
     }
   }
   return undefined;

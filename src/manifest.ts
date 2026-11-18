@@ -1,7 +1,7 @@
 import type { PaperclipPluginManifestV1 } from "@paperclipai/plugin-sdk";
 
 const PLUGIN_ID = "paperclip.lang";
-const PLUGIN_VERSION = "1.2.3";
+const PLUGIN_VERSION = "1.2.4";
 
 const manifest: PaperclipPluginManifestV1 = {
   id: PLUGIN_ID,
