@@ -722,7 +722,7 @@ export const zhCN: Record<string, string> = {
   "Permissions / Trust": "权限 / 信任",
   "Revisions": "修订记录",
   "Set as my primary": "设为我的主力",
-  "Identity": "身份",
+  "Identity": "状态",
   "Reports to": "汇报给",
   "Direct reports": "直接下属",
   "Public key": "公钥",
@@ -1219,4 +1219,16 @@ export const zhCN: Record<string, string> = {
   "e.g. script.js, --flag": "例如 script.js、--flag",
   "e.g. --verbose, --foo=bar": "例如 --verbose、--foo=bar",
   "e.g. VP of Engineering": "例如:工程副总裁",
+
+  // ── v1.1.0 additions (2026-11-17 UI sweep; 10 entries) ────────
+  "idle": "空闲",
+  "running": "运行中",
+  "paused": "已暂停",
+  "error": "错误",
+  "terminated": "已终止",
+  "active": "活跃",
+  "offline": "离线",
+  "online": "在线",
+  "Managed externally": "由外部托管",
+  "Thinking": "思考中",
 };
