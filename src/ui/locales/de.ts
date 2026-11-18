@@ -1334,4 +1334,8 @@ export const de: Record<string, string> = {
   ", included in the inference ledger.": ", die im Inferenz-Hauptbuch erfasst sind.",
   " · latest check unavailable": " · letzte Prüfung nicht verfügbar",
   "Usage and cost unavailable": "Nutzung und Kosten nicht verfügbar",
+
+  // ── v1.1.0 additions (2026-11-17 UI sweep; 2 entries) ────────
+  "Decisions": "Entscheidungen",
+  "Fast responses": "Schnellantworten",
 };

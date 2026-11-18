@@ -1334,4 +1334,8 @@ export const ko: Record<string, string> = {
   ", included in the inference ledger.": ", 추론 원장에 포함됩니다.",
   " · latest check unavailable": " · 마지막 확인 결과 없음",
   "Usage and cost unavailable": "사용량 및 비용 정보 없음",
+
+  // ── v1.1.0 additions (2026-11-17 UI sweep; 2 entries) ────────
+  "Decisions": "결정",
+  "Fast responses": "빠른 응답",
 };

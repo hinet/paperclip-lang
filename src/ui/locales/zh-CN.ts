@@ -1338,4 +1338,8 @@ export const zhCN: Record<string, string> = {
   ", included in the inference ledger.": ",已计入推理台账。",
   " · latest check unavailable": " · 上次检查不可用",
   "Usage and cost unavailable": "用量与成本不可用",
+
+  // ── v1.1.0 additions (2026-11-17 UI sweep; 2 entries) ────────
+  "Decisions": "决策",
+  "Fast responses": "快速响应",
 };

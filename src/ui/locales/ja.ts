@@ -1334,4 +1334,8 @@ export const ja: Record<string, string> = {
   ", included in the inference ledger.": "、推論台帳に計上済み。",
   " · latest check unavailable": " · 最新の確認は利用できません",
   "Usage and cost unavailable": "使用量とコストは利用できません",
+
+  // ── v1.1.0 additions (2026-11-17 UI sweep; 2 entries) ────────
+  "Decisions": "判断",
+  "Fast responses": "高速応答",
 };
